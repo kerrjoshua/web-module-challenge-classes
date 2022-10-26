@@ -161,15 +161,15 @@ class Instructor extends Lambdasian {
     return `Today we are learning about ${subject}`;
   }
   grade (student, subject) {
-    return `${student} receives a perfect score on ${subject}`
+    return `${student.name} receives a perfect score on ${subject}`
   }
 
 }
 
 const techGiant = new Instructor({name: 'Nathan', age: 374, location: 'Southall', specialty: 'throwing errors', favLanguage: 'python', catchPhrase: 'Heyo!'});
 
-// console.log(techGiant);
-// console.log(techGiant.demo('React'), techGiant.grade('Sarah', 'Advanced app development'));
+// // console.log(techGiant);
+// console.log(techGiant.demo('React'), techGiant.grade(happy, 'Advanced app development'));
 
 /*
   TASK 5
@@ -219,6 +219,9 @@ const happy =  new Student ({name: 'Happy', age: 13, location: 'Spring Street', 
     - Write a ProjectManager class extending Instructor.
     - Its constructor takes a single argument - an object with the following keys:
         + All the keys used to initialize instances of Instructor.
+            + name
+            + age
+            + location
         + `gradClassName`: i.e. CS1
         + `favInstructor`: i.e. Sean
     - Its constructor calls the parent constructor passing to it what it needs.
@@ -228,8 +231,19 @@ const happy =  new Student ({name: 'Happy', age: 13, location: 'Spring Street', 
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
+class ProjectManager extends Instructor {
+  constructor(props) {
+    super(props);
+    this.gradClassName = props.gradClassName;
+    this.favInstructor = props.favInstructor;
+  }
    
+  standUp(slackChannel) {
+    return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+  }
+  debugsCode(studentObj, subject) {
+    return `${this.name} debugs ${studentObj.name}'s code on ${subject}`
+  }
 }
 
 /*
