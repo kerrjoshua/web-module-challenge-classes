@@ -168,8 +168,8 @@ class Instructor extends Lambdasian {
 
 const techGiant = new Instructor({name: 'Nathan', age: 374, location: 'Southall', specialty: 'throwing errors', favLanguage: 'python', catchPhrase: 'Heyo!'});
 
-console.log(techGiant);
-console.log(techGiant.demo('React'), techGiant.grade('Sarah', 'Advanced app development'));
+// console.log(techGiant);
+// console.log(techGiant.demo('React'), techGiant.grade('Sarah', 'Advanced app development'));
 
 /*
   TASK 5
@@ -187,9 +187,32 @@ console.log(techGiant.demo('React'), techGiant.grade('Sarah', 'Advanced app deve
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
+class Student extends Lambdasian {
+  constructor(props){
+    super(props);
+    this.previousBackground = props.previousBackground;
+    this.className = props.className;
+    this.favSubjects = props.favSubjects;
+  }
    
+  listSubjects() {
+    return `Loving ${this.favSubjects.join(', ')}!`;
+   }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
+const happy =  new Student ({name: 'Happy', age: 13, location: 'Spring Street', previousBackground: 'dance', className: 'Web Design', favSubjects: ['English', 'programming patterns', 'history of computing']});
+// console.log(happy);
+// console.log(happy.speak());
+// console.log(happy.listSubjects());
+// console.log(happy.PRAssignment('CSS'));
+// console.log(happy.sprintChallenge('CSS'));
+
+
 
 /*
   TASK 6
