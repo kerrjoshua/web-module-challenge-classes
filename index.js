@@ -163,6 +163,16 @@ class Instructor extends Lambdasian {
   grade (student, subject) {
     return `${student.name} receives a perfect score on ${subject}`
   }
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  regrade (student){
+    const changeInGrade = this.getRandomIntInclusive(-5,15);
+    student.grade += changeInGrade;
+    console.log(`${student.name}'s grade has been changed by ${changeInGrade} points. The new grade is ${student.grade}.`);
+  }
 
 }
 
@@ -185,6 +195,10 @@ const techGiant = new Instructor({name: 'Nathan', age: 374, location: 'Southall'
         + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+
+        - Add a graduate method to a student.
+      + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
+      + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
 class Student extends Lambdasian {
@@ -193,8 +207,20 @@ class Student extends Lambdasian {
     this.previousBackground = props.previousBackground;
     this.className = props.className;
     this.favSubjects = props.favSubjects;
+    this.grade =  Math.floor(Math.random() * 101);
   }
-   
+  graduate(instructor) {
+    if (this.grade >= 70) {
+      return ` ${this.name}, you have graduated from ${instructor.name}'s class with a score of ${this.grade}. Congratulations!`;
+    } else {
+        for (let i = this.grade; i < 70; instructor.regrade(this)){
+          if (this.grade >= 70) {
+           return ` ${this.name}, you have graduated from ${instructor.name}'s class with a score of ${this.grade}. Congratulations!`;
+          }
+        }
+      }
+  }
+
   listSubjects() {
     return `Loving ${this.favSubjects.join(', ')}!`;
    }
@@ -254,6 +280,10 @@ class ProjectManager extends Instructor {
       + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+console.log(`Happy's initial score is ${happy.grade}`);
+
+console.log(happy.graduate(techGiant), `Happy's final score is ${happy.grade}`);
 
 
 //End of Challenge
