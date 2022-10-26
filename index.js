@@ -120,8 +120,19 @@ class Car {
 */
 
 class Lambdasian {
+  constructor(props){
+    this.name = props.name;
+    this.age = props.age;
+    this.location = props.location;
+  }
   
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
+
+const hubert = new Lambdasian({name: 'Hubert', age: 32, location: 'Cumberland Farms'});
+console.log(hubert.speak());
 
 /*
   TASK 4
