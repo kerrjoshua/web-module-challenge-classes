@@ -62,8 +62,8 @@ class Person {
   }
 }
 const howard = new Person('Howard', 53)
-console.log(howard.toString())
-console.log(howard.eat('ice cream'),howard.stomach,howard.eat('tacos'),howard.stomach,howard.eat('chocolate'),howard.stomach,howard.poop(), howard.stomach);
+// console.log(howard.toString())
+// console.log(howard.eat('ice cream'),howard.stomach,howard.eat('tacos'),howard.stomach,howard.eat('chocolate'),howard.stomach,howard.poop(), howard.stomach);
 
 /*
   TASK 2
@@ -80,9 +80,32 @@ console.log(howard.eat('ice cream'),howard.stomach,howard.eat('tacos'),howard.st
 */
 
 class Car {
-  
+  constructor (model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    const fuelConsumed = distance / this.milesPerGallon;
+    if (fuelConsumed <= this.tank) {
+      this.odometer += distance;
+      this.tank -= fuelConsumed;
+    } else {
+      const distTraveled = this.tank * this.milesPerGallon;
+      this.odometer += distTraveled;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+  }
 }
 
+// const myCar = new Car('Ford Taurus', 25);
+// console.log(myCar);
+// console.log(myCar.drive(20),myCar.fill(10),myCar.drive(2000));
 /*
   TASK 3
     - Write a Lambdasian class.
