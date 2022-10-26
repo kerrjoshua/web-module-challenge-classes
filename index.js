@@ -131,8 +131,8 @@ class Lambdasian {
   }
 }
 
-const hubert = new Lambdasian({name: 'Hubert', age: 32, location: 'Cumberland Farms'});
-console.log(hubert.speak());
+// const hubert = new Lambdasian({name: 'Hubert', age: 32, location: 'Cumberland Farms'});
+// console.log(hubert.speak());
 
 /*
   TASK 4
@@ -149,9 +149,27 @@ console.log(hubert.speak());
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(props) {
+    super(props)
+    this.specialty = props.specialty;
+    this.favLanguage = props.favLanguage;
+    this.catchPhrase = props.catchPhrase;
+  }
+
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade (student, subject) {
+    return `${student} receives a perfect score on ${subject}`
+  }
 
 }
+
+const techGiant = new Instructor({name: 'Nathan', age: 374, location: 'Southall', specialty: 'throwing errors', favLanguage: 'python', catchPhrase: 'Heyo!'});
+
+console.log(techGiant);
+console.log(techGiant.demo('React'), techGiant.grade('Sarah', 'Advanced app development'));
 
 /*
   TASK 5
